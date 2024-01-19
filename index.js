@@ -7,7 +7,6 @@ async function getAvailableFiles() {
     const html = (await axios.get('https://ddnet.org/stats/master/')).data;
     const $ = cheerio.load(html);
     const files = $('a')
-        .slice(0, 3)
         .filter((i, el) => el.attribs.href.endsWith('.tar.zstd'))
         .map((i, el) => el.attribs.href.replace('.tar.zstd', ''))
         .toArray()
